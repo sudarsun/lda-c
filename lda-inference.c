@@ -36,7 +36,7 @@ double lda_inference(document* doc, lda_model* model, double* var_gamma, double*
 
     for (k = 0; k < model->num_topics; k++)
     {
-        var_gamma[k] = model->alpha + (doc->total/((double) model->num_topics));
+        var_gamma[k] = model->alpha + (doc->ftotal/((double) model->num_topics));
         digamma_gam[k] = digamma(var_gamma[k]);
         for (n = 0; n < doc->length; n++)
             phi[n][k] = 1.0/model->num_topics;
@@ -67,7 +67,7 @@ double lda_inference(document* doc, lda_model* model, double* var_gamma, double*
             {
                 phi[n][k] = exp(phi[n][k] - phisum);
                 var_gamma[k] =
-                    var_gamma[k] + doc->counts[n]*(phi[n][k] - oldphi[k]);
+                    var_gamma[k] + doc->fcounts[n]*(phi[n][k] - oldphi[k]);
                 // !!! a lot of extra digamma's here because of how we're computing it
                 // !!! but its more automatically updated too.
                 digamma_gam[k] = digamma(var_gamma[k]);
@@ -118,7 +118,7 @@ compute_likelihood(document* doc, lda_model* model, double** phi, double* var_ga
 	{
             if (phi[n][k] > 0)
             {
-                likelihood += doc->counts[n]*
+                likelihood += doc->fcounts[n]*
                     (phi[n][k]*((dig[k] - digsum) - log(phi[n][k])
                                 + model->log_prob_w[k][doc->words[n]]));
             }

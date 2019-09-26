@@ -48,8 +48,8 @@ double doc_e_step(document* doc, double* gamma, double** phi,
     {
         for (k = 0; k < model->num_topics; k++)
         {
-            ss->class_word[k][doc->words[n]] += doc->counts[n]*phi[n][k];
-            ss->class_total[k] += doc->counts[n]*phi[n][k];
+            ss->class_word[k][doc->words[n]] += doc->fcounts[n]*phi[n][k];
+            ss->class_total[k] += doc->fcounts[n]*phi[n][k];
         }
     }
 
@@ -342,6 +342,8 @@ int main(int argc, char* argv[])
     }
     else
     {
+        printf("LDA (Variational EM) build 190926-1125\n");
+        printf("\t -- allows floating point counts\n\n");
         printf("usage : lda est [initial alpha] [k] [settings] [data] [random/seeded/manual=filename/*] [directory]\n");
         printf("        lda inf [settings] [model] [data] [name]\n");
     }

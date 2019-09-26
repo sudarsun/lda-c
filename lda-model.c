@@ -148,7 +148,7 @@ void corpus_initialize_ss(lda_suffstats* ss, lda_model* model, corpus* c)
             doc = &(c->docs[d]);
             for (n = 0; n < doc->length; n++)
             {
-                ss->class_word[k][doc->words[n]] += doc->counts[n];
+                ss->class_word[k][doc->words[n]] += doc->fcounts[n];
             }
         }
         for (n = 0; n < model->num_terms; n++)
@@ -191,7 +191,7 @@ void manual_initialize_ss(char *seedfile, lda_suffstats* ss, lda_model* model, c
             doc = &(c->docs[d]);
             for (n = 0; n < doc->length; n++)
             {
-                ss->class_word[k][doc->words[n]] += doc->counts[n];
+                ss->class_word[k][doc->words[n]] += doc->fcounts[n];
             }
         }
         for (n = 0; n < model->num_terms; n++)

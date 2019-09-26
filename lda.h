@@ -23,9 +23,11 @@
 typedef struct
 {
     int* words;
-    int* counts;
+    //int* counts;
+    float* fcounts;
     int length;
-    int total;
+    //int total;
+    float ftotal;
 } document;
 
 
