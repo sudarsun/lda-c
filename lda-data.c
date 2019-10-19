@@ -41,7 +41,7 @@ corpus* read_data(char* data_filename)
         c->docs[nd].ftotal = 0;
         c->docs[nd].words = malloc(sizeof(int)*length);
         //c->docs[nd].counts = malloc(sizeof(int)*length);
-        c->docs[nd].fcounts = malloc(sizeof(float)*length);
+        c->docs[nd].fcounts = malloc(sizeof(double)*length);
         for (n = 0; n < length; n++)
         {
             //fscanf(fileptr, "%10d:%10d", &word, &count);

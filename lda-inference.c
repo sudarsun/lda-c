@@ -46,9 +46,9 @@ double lda_inference(document* doc, lda_model* model, double* var_gamma, double*
     while ((converged > VAR_CONVERGED) &&
            ((var_iter < VAR_MAX_ITER) || (VAR_MAX_ITER == -1)))
     {
-	var_iter++;
-	for (n = 0; n < doc->length; n++)
-	{
+        var_iter++;
+        for (n = 0; n < doc->length; n++)
+        {
             phisum = 0;
             for (k = 0; k < model->num_topics; k++)
             {
